@@ -1,7 +1,7 @@
 class JobOffer
   include ActiveModel::Validations
 
-  attr_accessor :id, :user, :user_id, :title,
+  attr_accessor :id, :user, :user_id, :title, :experience,
                 :location, :description, :is_active,
                 :updated_on, :created_on
 
@@ -10,6 +10,7 @@ class JobOffer
   def initialize(data = {})
     @id = data[:id]
     @title = data[:title]
+    @experience = data[:experience]
     @location = data[:location]
     @description = data[:description]
     @is_active = data[:is_active]

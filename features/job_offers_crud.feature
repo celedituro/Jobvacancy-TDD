@@ -22,3 +22,10 @@ Feature: Job Offers CRUD
     When I delete it
     Then I should see a offer deleted confirmation message
     And I should not see "Programmer vacancy!!!" in my offers list
+
+  @wip
+  Scenario: Crear offer
+    Given I have "Programmer vacancy" offer in my offers list
+    When I create it
+    Then I should write the experience requiered to apply for it
+    And I should not see "Programmer vacancy" in my offers list
