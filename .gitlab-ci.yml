@@ -1,0 +1,30 @@
+image: ruby:2.7.5
+services:
+  - postgres:9.5
+variables:
+  POSTGRES_DB: jobvacancy_test
+  POSTGRES_USER: jobvacancy
+  POSTGRES_PASSWORD: jobvacancy
+  DB_HOST: postgres
+  TEST_DB_URL: postgres://jobvacancy:jobvacancy@postgres/jobvacancy_test
+stages:
+  - build
+  - deploy_staging
+
+job_build:
+  stage: build
+  script:
+    - apt-get update -qq && apt-get install -y -qq postgresql postgresql-contrib libpq-dev cmake
+    - ruby -v
+    - which ruby
+    - gem install bundler -v 2.1.4 --no-document
+    - bundle install --without staging production
+    - RACK_ENV=test bundle exec rake
+
+job_deploy_staging:
+  stage: deploy_staging
+  script:
+  - gem install dpl
+  - dpl --provider=heroku --app=$HEROKU_STAGING_APP --api-key=$HEROKU_STAGING_API_KEY
+  only:
+  - staging
