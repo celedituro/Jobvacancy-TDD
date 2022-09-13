@@ -69,3 +69,13 @@ end
 And(/^I delete it$/) do
   click_button('Delete')
 end
+
+When('I create a new offer with {int} as the experience') do |experience|
+  visit '/job_offers/new'
+  fill_in('job_offer_form[experience]', with: experience)
+  click_button('Create')
+end
+
+Then(/^I should not see a offer created confirmation message$/) do
+  page.should_not have_content(OFFER_CREATED_MESSAGE)
+end

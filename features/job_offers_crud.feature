@@ -11,6 +11,10 @@ Feature: Job Offers CRUD
     Then I should see a offer created confirmation message
     And I should see "Programmer vacancy" in my offers list
 
+  Scenario: Create new offer with experience
+    When I create a new offer with 2 as the experience
+    Then I should not see a offer created confirmation message
+
   Scenario: Update offer
     Given I have "Programmer vacancy" offer in my offers list
     When I change the title to "Programmer vacancy!!!"
@@ -23,9 +27,3 @@ Feature: Job Offers CRUD
     Then I should see a offer deleted confirmation message
     And I should not see "Programmer vacancy!!!" in my offers list
 
-  @wip
-  Scenario: Crear offer
-    Given I have "Programmer vacancy" offer in my offers list
-    When I create it
-    Then I should write the experience requiered to apply for it
-    And I should not see "Programmer vacancy" in my offers list

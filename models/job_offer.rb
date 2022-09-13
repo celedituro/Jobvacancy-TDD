@@ -1,22 +1,26 @@
 class JobOffer
   include ActiveModel::Validations
 
-  attr_accessor :id, :user, :user_id, :title, :experience,
+  attr_accessor :id, :user, :user_id, :title,
                 :location, :description, :is_active,
-                :updated_on, :created_on
+                :updated_on, :created_on, :experience
 
   validates :title, presence: true
 
   def initialize(data = {})
     @id = data[:id]
     @title = data[:title]
-    @experience = data[:experience]
     @location = data[:location]
     @description = data[:description]
     @is_active = data[:is_active]
     @updated_on = data[:updated_on]
     @created_on = data[:created_on]
     @user_id = data[:user_id]
+    @experience = if data[:experience].nil? || data[:experience] == ''
+                    0
+                  else
+                    data[:experience]
+                  end
     validate!
   end
 
