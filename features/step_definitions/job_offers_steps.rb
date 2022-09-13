@@ -22,6 +22,13 @@ When(/^I create a new offer with "(.*?)" as the title$/) do |title|
   click_button('Create')
 end
 
+When('I create a new offer with {string} as the title and {int} as the experience') do |title, experience|
+  visit '/job_offers/new'
+  fill_in('job_offer_form[title]', with: title)
+  fill_in('job_offer_form[experience]', with: experience)
+  click_button('Create')
+end
+
 Then(/^I should see a offer created confirmation message$/) do
   page.should have_content(OFFER_CREATED_MESSAGE)
 end
@@ -70,7 +77,7 @@ And(/^I delete it$/) do
   click_button('Delete')
 end
 
-When('I create a new offer with {int} as the experience') do |experience|
+When('I create a new offer with no title and {int} as the experience') do |experience|
   visit '/job_offers/new'
   fill_in('job_offer_form[experience]', with: experience)
   click_button('Create')
