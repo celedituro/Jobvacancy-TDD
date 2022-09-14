@@ -6,6 +6,7 @@ class JobOffer
                 :updated_on, :created_on, :experience
 
   validates :title, presence: true
+  validates :experience, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   def initialize(data = {})
     @id = data[:id]
@@ -16,11 +17,7 @@ class JobOffer
     @updated_on = data[:updated_on]
     @created_on = data[:created_on]
     @user_id = data[:user_id]
-    @experience = if data[:experience].nil? || data[:experience] == ''
-                    0
-                  else
-                    data[:experience]
-                  end
+    @experience = data[:experience].blank? ? 0 : data[:experience]
     validate!
   end
 
