@@ -14,7 +14,12 @@ Feature: Job Offers CRUD
   Scenario: Create new offer with experience
     When I create a new offer with "Programmer vacancy" as the title and 2 as the experience
     Then I should see a offer created confirmation message
-    And I should see "Programmer vacancy" in my offers list
+    And I should see "Programmer vacancy" and 2 in my offers list
+
+  Scenario: Create new offer with cero experience
+    When I create a new offer with "Programmer vacancy" as the title and 0 as the experience
+    Then I should see a offer created confirmation message 
+    And I should see "Programmer vacancy Not specified" in my offers list
 
   Scenario: Create new offer with only experience
     When I create a new offer with no title and 2 as the experience

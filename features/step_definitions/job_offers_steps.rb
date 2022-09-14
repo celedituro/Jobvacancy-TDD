@@ -86,3 +86,9 @@ end
 Then(/^I should not see a offer created confirmation message$/) do
   page.should_not have_content(OFFER_CREATED_MESSAGE)
 end
+
+Then('I should see {string} and {int} in my offers list') do |string, int|
+  visit '/job_offers/my'
+  page.should have_content(string)
+  page.should have_content(int)
+end

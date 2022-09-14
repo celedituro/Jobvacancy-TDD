@@ -21,7 +21,11 @@
 			<%= offer.description %>
 		</td>
 		<td>
-			<%= offer.experience %>
+			<% if offer.experience.zero? %>
+				Not specified
+			<% else %>
+				<%= offer.experience %>
+			<% end %>
 		</td>			
 		<td>
 			<%= offer.is_active %>
