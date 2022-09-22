@@ -1,5 +1,5 @@
-Job Vacancy Application
-=======================
+Job Vacancy Application - Celeste Dituro
+========================================
 
 [![build status](https://gitlab.com/fiuba-memo2/alumnos-jobvacancy/celeste/badges/master/pipeline.svg)](https://gitlab.com/fiuba-memo2/alumnos-jobvacancy/celeste/commits/master)
 
